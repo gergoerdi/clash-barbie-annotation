@@ -66,20 +66,6 @@ packages:
       sha256: c65170e2f7c3369dbd487a7ab7e1a3542dbc943f05eacca12950001e3414ebfb
   original:
     hackage: shake-0.18.2
-- completed:
-    size: 51045
-    url: https://github.com/jcpetruzza/barbies/archive/0957801ce1cdea64a524c6dac07c9407557b9520.tar.gz
-    cabal-file:
-      size: 4407
-      sha256: d3edaeaf9bb596a18b71b32662a63c5708221804bffa18f08174ada415691a8f
-    name: barbies
-    version: 2.0.0.0
-    sha256: adb49389596251850e2af630f9b119eb0367473a987d970a0cc8cd2f8052c1dd
-    pantry-tree:
-      size: 4748
-      sha256: 982e3ee126e714145307ddf0f380cd1a97f9b46b8b7f7463118b0ced5d6b90c3
-  original:
-    url: https://github.com/jcpetruzza/barbies/archive/0957801ce1cdea64a524c6dac07c9407557b9520.tar.gz
 snapshots:
 - completed:
     size: 491372

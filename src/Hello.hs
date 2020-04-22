@@ -1,39 +1,35 @@
+{-# LANGUAGE TypeFamilies, DataKinds #-}
 module Hello where
 
 import Clash.Prelude
 import Clash.Annotations.TH
+import Data.Kind (Type)
 
-import Barbies
-import Barbies.Bare
-import Data.Barbie.TH
-
-declareBareB [d|
-  data MyBarbieTH = MyBarbieTH
-      { bar :: "BAR" ::: Bool
-      , baz :: "BAZ" ::: Int
-      } |]
+-- Setting the scene: mini-Barbies
+data Cover = Bare | Covered
+type family Wear (c :: Cover) (f :: Type -> Type) a :: Type where
+    Wear Bare f a = a
+    Wear Covered f a = f a
 
 -- This one works
-data MyBarbieManual1 c f = MyBarbieManual1
-    { bar' :: "BAR" ::: Wear c f Bool
-    , baz' :: "BAZ" ::: Wear c f Int
+data Inverted c f = Inverted
+    { bar' :: "FIELD1" ::: Wear c f Bool
+    , baz' :: "FIELD2" ::: Wear c f Bool
     }
 
--- This is what `MyBarbieTH` is translated into...
-data MyBarbieManual2 c f = MyBarbieManual2
-    { bar2 :: Wear c f ("BAR" ::: Bool)
-    , baz2 :: Wear c f ("BAZ" ::: Int)
+-- This is what `barbies-th` emits...
+data Dressed c f = Dressed
+    { bar2 :: Wear c f ("FIELD1" ::: Bool)
+    , baz2 :: Wear c f ("FIELD2" ::: Bool)
     }
 
 topEntity
-    :: ( "FOO" ::: MyBarbieTH Covered (Signal System)
-       , "QUUX" ::: MyBarbieManual1 Covered (Signal System)
-       , "FLOB" ::: MyBarbieManual2 Covered (Signal System)
+    :: ( "FOO" ::: Inverted Covered (Signal System)
+       , "BAR" ::: Dressed Covered (Signal System)
        )
 topEntity =
-    ( MyBarbieTH (pure True) (pure 0)
-    , MyBarbieManual1 (pure True) (pure 0)
-    , MyBarbieManual2 (pure True) (pure 0)
+    ( Inverted (pure True) (pure False)
+    , Dressed (pure True) (pure False)
     )
 
 makeTopEntity 'topEntity

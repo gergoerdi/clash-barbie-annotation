@@ -8,9 +8,6 @@ dependencies:
   - clash-lib
   - clash-ghc
 
-  - barbies
-  - barbies-th
-
 default-extensions:
   - BinaryLiterals
   - ConstraintKinds
