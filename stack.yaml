@@ -1,0 +1,8 @@
+resolver: clash-HEAD.yaml
+
+extra-deps:
+  - barbies-th
+  
+  - github: jcpetruzza/barbies
+    commit: 0957801ce1cdea64a524c6dac07c9407557b9520
+ 

@@ -1,0 +1,48 @@
+name: barbie-annotation
+version: 0.1.0
+category: acme
+
+dependencies:
+  - base
+  - clash-prelude
+  - clash-lib
+  - clash-ghc
+
+  - barbies
+  - barbies-th
+
+default-extensions:
+  - BinaryLiterals
+  - ConstraintKinds
+  - DataKinds
+  - DeriveAnyClass
+  - DeriveGeneric
+  - DeriveLift
+  - DerivingStrategies
+  - ExplicitForAll
+  - ExplicitNamespaces
+  - FlexibleContexts
+  - FlexibleInstances
+  - KindSignatures
+  - MagicHash
+  - MonoLocalBinds
+  - NoImplicitPrelude
+  - NoMonomorphismRestriction
+  - NoStarIsType
+  - NoStrictData
+  - NoStrict
+  - QuasiQuotes
+  - ScopedTypeVariables
+  - TemplateHaskellQuotes
+  - TemplateHaskell
+  - TypeApplications
+  - TypeFamilies
+  - TypeInType
+  - TypeOperators
+
+source-dirs:
+  - src
+
+library:
+  exposed-modules:
+    - Hello

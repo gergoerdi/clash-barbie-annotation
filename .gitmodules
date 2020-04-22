@@ -1,0 +1,3 @@
+[submodule "barbies-th"]
+	path = barbies-th
+	url = git@github.com:gergoerdi/barbies-th.git
