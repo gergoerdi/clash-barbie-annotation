@@ -11,25 +11,25 @@ type family Wear (c :: Cover) (f :: Type -> Type) a :: Type where
     Wear Bare f a = a
     Wear Covered f a = f a
 
--- This one works
-data Inverted c f = Inverted
-    { bar' :: "FIELD1" ::: Wear c f Bool
-    , baz' :: "FIELD2" ::: Wear c f Bool
-    }
-
 -- This is what `barbies-th` emits...
 data Dressed c f = Dressed
-    { bar2 :: Wear c f ("FIELD1" ::: Bool)
-    , baz2 :: Wear c f ("FIELD2" ::: Bool)
+    { fd1' :: Wear c f ("FIELD1" ::: Bool)
+    , fd2' :: Wear c f ("FIELD2" ::: Bool)
+    }
+
+-- This one works
+data Inlined f = Inlined
+    { fd1 :: f ("FIELD1" ::: Bool)
+    , fd2 :: f ("FIELD2" ::: Bool)
     }
 
 topEntity
-    :: ( "FOO" ::: Inverted Covered (Signal System)
-       , "BAR" ::: Dressed Covered (Signal System)
+    :: ( "FOO" ::: Dressed Covered (Signal System)
+       , "BAR" ::: Inlined (Signal System)
        )
 topEntity =
-    ( Inverted (pure True) (pure False)
-    , Dressed (pure True) (pure False)
+    ( Dressed (pure True) (pure False)
+    , Inlined (pure True) (pure False)
     )
 
 makeTopEntity 'topEntity
